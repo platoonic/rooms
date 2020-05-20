@@ -1,0 +1,91 @@
+
+/*
+	
+
+	rooms - media casting web application
+	By: Khalid Magdy / Malak Sowelem / Mohammed Hisham / Peter Emad
+
+
+*/
+
+body{
+	font-family: 'Fira Sans', sans-serif;
+	background: url("../imgs/01.png") top left no-repeat,
+				url("../imgs/02.png") no-repeat,
+				url("../imgs/03.png") bottom right no-repeat,
+				url("../imgs/04.png") bottom right no-repeat;
+	background-color: #39454d;
+	color:white;
+	padding-top: 150px;
+	background-attachment: fixed;
+}
+
+h1,h2,h3,h4,h5,h6{
+	margin: 15px 0;
+	font-weight: 500;
+}
+
+.container-md{
+	max-width: 960px;
+}
+
+.homepage h1{
+	margin-top:50px;
+	font-size:35px;
+}
+
+.homepage .description{
+	font-size:18px;
+	color:#7f99aa;
+	line-height: 1.5em;
+}
+
+.homepage .action{
+	margin-top:40px;
+}
+
+.homepage .action span{
+	color:#678090;
+	padding:0 30px;
+}
+
+.homepage .action .login{
+	font-weight: 500;
+}
+
+.homepage .action .login:hover{
+	border-bottom:1px dotted #3e92ca;
+}
+
+.homepage .credits{
+	margin-top:80px;
+	font-size:14px;
+	color:#7f99aa;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
