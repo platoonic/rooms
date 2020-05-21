@@ -16,7 +16,6 @@ body{
 				url("../imgs/04.png") bottom right no-repeat;
 	background-color: #39454d;
 	color:white;
-	padding-top: 150px;
 	background-attachment: fixed;
 }
 
@@ -27,6 +26,8 @@ h1,h2,h3,h4,h5,h6{
 
 .container-md{
 	max-width: 960px;
+	padding-top:80px;
+	position:relative;
 }
 
 .homepage h1{
@@ -63,10 +64,39 @@ h1,h2,h3,h4,h5,h6{
 	color:#7f99aa;
 }
 
+.overlay{
+	width:100%;
+	height:100%;
+	position:absolute;
+	top:0;
+	opacity:0.8;
+	z-index:2;
+	background-color:#39454d;
+}
 
+.box{
+	z-index:999;
+	background-color:#cdd6db;
+	position:absolute;
+	padding:30px;
+	left:35%;
+	top:20%;
+}
 
+.box input{
+	display:block;
+	margin-top:15px;
+}
 
+.box h2{
+	color:#5a6870;
+}
 
+.box a.button{
+	display:block;
+	margin-top:15px;
+	text-align: center;
+}
 
 
 
