@@ -27,3 +27,20 @@ a{
 .button.green:hover{
 	background-color:#3d8c69;
 }
+.button.blue{
+	background-color: #3ba1be;
+}
+.button.blue:hover{
+	background-color: #2888a3;
+}
+
+input[type=text], input[type=password]{
+	padding:13px;
+	min-width: 300px;
+	border:0;
+	font-size:15px;
+}
+
+input[type=text]::placeholder, input[type=password]::placeholder{
+	color:#b8b8b8;
+}
