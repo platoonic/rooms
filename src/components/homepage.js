@@ -1,6 +1,6 @@
 import React from 'react';
 //Images
-import Logo from './imgs/logo.png';
+import Logo from '../imgs/logo.png';
 
 export default function homepage(props){
 	return(
