@@ -13,6 +13,10 @@ a{
 	font-size:17px;
 }
 
+.wrapper{
+	display:inline-block;
+}
+
 .button{
 	text-decoration: none;
 	color:white;
@@ -32,6 +36,15 @@ a{
 }
 .button.blue:hover{
 	background-color: #2888a3;
+}
+.button.red{
+	background-color:#b23333;
+}
+.button.red:hover{
+	background-color:#9a2525;
+}
+.button.disabled{
+	background-color:#919191!important;
 }
 
 input[type=text], input[type=password]{
