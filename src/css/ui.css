@@ -17,6 +17,10 @@ a:hover{
 	border-bottom:1px dotted #3e92ca;
 }
 
+a.button:hover{
+	border:0;
+}
+
 .wrapper{
 	display:inline-block;
 }

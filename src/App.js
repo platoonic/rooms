@@ -13,9 +13,9 @@ import Logo from './imgs/logo.png';
 function App() {
 	const [loginVisible, showLogin] = useState(0);
 	const [signupVisible, showSignup] = useState(0);
-	const [loggedIn, setLogin] = useState(1);
+	const [loggedIn, setLogin] = useState(0);
 	const [username, setUsername] = useState("username");
-	const [insideRoom, setInsideRoom] = useState(1);
+	const [insideRoom, setInsideRoom] = useState(0);
 	let render;
 	if(loggedIn){
 		render = <Dashboard insideRoom = {insideRoom}/>;
