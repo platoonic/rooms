@@ -13,13 +13,20 @@ import Logo from './imgs/logo.png';
 function App() {
 	const [loginVisible, showLogin] = useState(0);
 	const [signupVisible, showSignup] = useState(0);
-	const [loggedIn, setLogin] = useState(0);
+	const [loggedIn, setLogin] = useState(1);
 	const [username, setUsername] = useState("username");
+	const [insideRoom, setInsideRoom] = useState(1);
 	let render;
 	if(loggedIn){
-		render = <Dashboard />;
+		render = <Dashboard insideRoom = {insideRoom}/>;
 	}else{
 		render = <Homepage showLogin = {showLogin} showSignup = {showSignup}/>;
+	}
+	let button;
+	if(insideRoom){
+		button = <a onClick={() => {setInsideRoom(0)}} className="button red" href="#">Leave Room</a>
+	}else{
+		button = <a onClick={() => {setLogin(0)}} className="button red" href="#">Logout</a>;
 	}
 	return (
 		<>
@@ -31,13 +38,13 @@ function App() {
 			}
 		    <div className="container-md homepage">
 				<div className="row">
-					<div className="col-9">
+					<div className="col-8">
 						<img className="logo" src={Logo} alt="rooms" />
 					</div>
 					{loggedIn == 1 &&
-						<div className="col-3 user_menu">
+						<div className="col-4 user_menu">
 							<span>@{username}</span>
-							<a onClick={() => {setLogin(0)}} className="button red" href="#">Logout</a>
+							{button}
 						</div>
 					}
 				</div>

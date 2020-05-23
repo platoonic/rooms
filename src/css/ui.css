@@ -13,6 +13,10 @@ a{
 	font-size:17px;
 }
 
+a:hover{
+	border-bottom:1px dotted #3e92ca;
+}
+
 .wrapper{
 	display:inline-block;
 }
