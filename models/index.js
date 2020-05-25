@@ -7,7 +7,7 @@ var basename  = path.basename(__filename);
 var env       = process.env.NODE_ENV || 'development';
 var db        = {};
 
-const sequelize = new Sequelize('rooms', 'root', 'root', {
+const sequelize = new Sequelize('rooms', 'root', '', {
   host: 'localhost',
   dialect: 'mysql'
 });
