@@ -8,7 +8,6 @@ router.get('/', function(req, res, next) {
 		console.log(users);
 	});
 });
-
 router.post('/', function(req, res, next) {
 	console.log(req.body);
 	let username = req.body.username;
@@ -33,5 +32,4 @@ router.delete('/:userID', function(req, res, next) {
 		res.status(400).json({ status:'Bad Request', code:400, data: { message: 'Error Occured: ' + error } });
 	});
 });
-
 module.exports = router;
