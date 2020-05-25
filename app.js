@@ -20,10 +20,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 //have MySQL running on your pc
 db.authenticate().then(() => {
 	console.log("Connection established");
-}).catch(() => {
+}).catch((error) => {
 	console.log("Connection failed");
+	console.log(error);
 });
-
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/rooms', roomsRouter);
