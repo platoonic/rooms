@@ -6,8 +6,10 @@ const models = require('../models');
 router.get('/', function(req, res, next) {
 	models.User.findAll().then((users) => {
 		console.log(users);
+		res.send('ok');
 	});
 });
+/* POST create a new user */
 router.post('/', function(req, res, next) {
 	console.log(req.body);
 	let username = req.body.username;
@@ -20,6 +22,7 @@ router.post('/', function(req, res, next) {
 	});
 });
 
+/* DELETE delete a user with an ID */
 router.delete('/:userID', function(req, res, next) {
 	let user_id = req.params.userID;
 	models.User.destroy({
@@ -32,4 +35,5 @@ router.delete('/:userID', function(req, res, next) {
 		res.status(400).json({ status:'Bad Request', code:400, data: { message: 'Error Occured: ' + error } });
 	});
 });
+
 module.exports = router;

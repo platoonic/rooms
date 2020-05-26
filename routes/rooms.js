@@ -1,19 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var models = require('../models');
-var bodyParser = require('body-parser');
-var queryString = require('querystring');
-var url = require('url');
-
-const app = express();
-app.use( bodyParser.json() );  
-app.use(bodyParser.urlencoded({ 
-  extended: true
-})); 
-
-
-app.use(express.json());  
-app.use(express.urlencoded())
 
 router.post('/', function(req, res, next)
 {
@@ -47,6 +34,7 @@ router.get('/', function(req, res, next)
 {
 	models.Room.findAll().then(Rooms => {
 		console.log(Rooms)
+		res.json("rooms retreived");
 	})
 });
 
