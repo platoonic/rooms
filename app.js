@@ -31,7 +31,7 @@ db.authenticate().then(() => {
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 //Make sure to authenticate before you can create a room
-app.use('/rooms', passport.authenticate('jwt', {session: false}), roomsRouter);
-app.use('/auth' , authRouter);
-
+//app.use('/rooms', passport.authenticate('jwt', {session: false}), roomsRouter);
+//app.use('/auth' , authRouter);
+app.use('/rooms', roomsRouter);
 module.exports = app;
