@@ -11,7 +11,7 @@ let sequelize;
 if(process.env.NODE_ENV){
   sequelize = new Sequelize('mysql://bbd76a93c13d6e:e8b581ff@us-cdbr-east-06.cleardb.net/heroku_92ae438ef95c184?reconnect=true');
 }else{
-  sequelize = new Sequelize('rooms', 'root', '', {
+  sequelize = new Sequelize('rooms', 'root', 'root', {
     host: 'localhost',
     dialect: 'mysql'
   });
