@@ -1,4 +1,8 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+//Utilities
+import API from './axios';
+import {loadProgressBar} from 'axios-progress-bar';
+import {logout} from './auth';
 //Components
 import Homepage from './components/homepage';
 import Login from './components/login';
@@ -7,6 +11,7 @@ import Dashboard from './components/dashboard';
 //CSS Files
 import './css/ui.css';
 import './css/theme.css';
+import 'axios-progress-bar/dist/nprogress.css'
 //Images
 import Logo from './imgs/logo.png';
 
@@ -16,9 +21,33 @@ function App() {
 	const [loggedIn, setLogin] = useState(0);
 	const [username, setUsername] = useState("username");
 	const [insideRoom, setInsideRoom] = useState(0);
+
+	//Check if user is already logged in
+	useEffect(() => {
+		//Attach Axios loading bar
+		loadProgressBar({}, API);
+		if(localStorage.getItem('userData')){
+			let userData = JSON.parse(localStorage.getItem('userData'));
+			setLogin(1);
+			//Send Token with Each request
+			API.interceptors.request.use((config) => {
+				config.headers.token = userData.token;
+				return config;
+			}, (error) => {
+				return Promise.reject(error);
+			})
+			setUsername(userData.username);
+		}
+	});
+
+	let logoutHandler = () => {
+		logout();
+		setLogin(0);
+	}
+
 	let render;
 	if(loggedIn){
-		render = <Dashboard insideRoom = {insideRoom}/>;
+		render = <Dashboard setInsideRoom = {setInsideRoom} insideRoom = {insideRoom}/>;
 	}else{
 		render = <Homepage showLogin = {showLogin} showSignup = {showSignup}/>;
 	}
@@ -26,7 +55,7 @@ function App() {
 	if(insideRoom){
 		button = <a onClick={() => {setInsideRoom(0)}} className="button red" href="#">Leave Room</a>
 	}else{
-		button = <a onClick={() => {setLogin(0)}} className="button red" href="#">Logout</a>;
+		button = <a onClick={() => {logoutHandler()}} className="button red" href="#">Logout</a>;
 	}
 	return (
 		<>

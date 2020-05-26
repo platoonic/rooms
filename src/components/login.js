@@ -1,4 +1,7 @@
 import React from 'react';
+//Utilities
+import API from '../axios';
+import {login} from '../auth'
 
 class Login extends React.Component{
 	constructor(props){
@@ -28,12 +31,21 @@ class Login extends React.Component{
 		}
 		if(errors == ""){
 			//Send API Request to /users/login
-			//Timeout to simulate a real request delay
-			setTimeout(() => {
+			API.post('/auth/login', {
+				username: this.state.username,
+				password: this.state.password
+			}).then((res) => {
+				console.log(res);
+				alert("Logged In Successfully!");
+				login(this.state.username, res.data.data.token);
+				this.props.showLogin(0);
 				this.props.setUsername(this.state.username);
 				this.props.setLogin(1);
-				this.props.showLogin(0);
-			}, 2000);
+			}).catch((error) => {
+				alert("Wrong Crednentials!");
+				console.log(error);
+				this.setState({ submitActive: true });
+			});
 		}else{
 			alert(errors);
 			submitActive = true;

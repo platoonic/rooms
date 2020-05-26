@@ -6,10 +6,10 @@ export default class Room extends React.Component{
 	}
 	render(){
 		return(
-			<div class="col-12">
+			<div className="col-12">
 				<video width="933" height="360" controls></video>
-				<div class="video_controls">
-					<span class="room_name">{this.props.room_name}</span>
+				<div className="video_controls">
+					<span className="room_name">{this.props.room_name}</span>
 					{this.props.type == 'host' &&
 					<>
 						<a href="#">Share Screen</a>
@@ -17,7 +17,7 @@ export default class Room extends React.Component{
 						<a href="#">Invite Users</a>
 					</>
 					}
-					<div class="participants">
+					<div className="participants">
 						<span>Participants</span>
 							<ul>
 								<li>@{this.props.room_name}(me)</li>

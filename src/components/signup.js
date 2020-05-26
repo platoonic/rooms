@@ -1,4 +1,6 @@
 import React from 'react';
+//Utilities
+import API from '../axios';
 
 export default class SignUp extends React.Component{
 	constructor(props){
@@ -39,12 +41,22 @@ export default class SignUp extends React.Component{
 		}
 		
 		if(errors == ""){
-			//Send API Request to /users/login
-			//Timeout to simulate a real request delay
-			setTimeout(() => {
+			//Send HTTP POST request to register the user at the backend API
+			API.post('/users', {
+				username: this.state.username,
+				email: this.state.email,
+				password: this.state.password
+			}).then((res) => {
+				console.log(res);
+				alert("You have signed up!");
 				this.props.showSignup(0);
 				this.props.showLogin(1);
-			}, 2000);
+
+			}).catch((error) => {
+				console.log(error);
+				alert("An error occured!");
+			});
+			
 		}else{
 			alert(errors);
 			submitActive = true;

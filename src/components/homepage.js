@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Homepage(props){
 	return(
-		<div class="col-12">
+		<div className="col-12">
 			<h1>Create Virtual Rooms and start casting media for<br/> others.</h1>
 			<p className="description">rooms is a platform that lets people setup private rooms and share their screen/windows/browser tabs or even local 
 			video files with each other and control their playback and more!</p>
