@@ -7,10 +7,11 @@ var basename  = path.basename(__filename);
 var env       = process.env.NODE_ENV || 'development';
 var db        = {};
 
+let sequelize;
 if(process.env.NODE_ENV){
-  const sequelize = new Sequelize('mysql://bbd76a93c13d6e:e8b581ff@us-cdbr-east-06.cleardb.net/heroku_92ae438ef95c184?reconnect=true');
+  sequelize = new Sequelize('mysql://bbd76a93c13d6e:e8b581ff@us-cdbr-east-06.cleardb.net/heroku_92ae438ef95c184?reconnect=true');
 }else{
-  const sequelize = new Sequelize('rooms', 'root', 'root', {
+  sequelize = new Sequelize('rooms', 'root', '', {
     host: 'localhost',
     dialect: 'mysql'
   });
