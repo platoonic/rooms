@@ -11,7 +11,7 @@ passport.use(new LocalStrategy({
 	usernameField: 'username',
 	passwordField: 'password'
 }, function(username, password, cb){
-	return models.User.findOne({username, password}).then((user) => {
+	return models.User.findOne({ where: {username, password} }).then((user) => {
 		if(!user){
 			return cb(null, false, {message: 'Incorrect username/password'});
 		}
