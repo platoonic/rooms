@@ -6,6 +6,7 @@ const models = require('../models');
 router.get('/', function(req, res, next) {
 	models.User.findAll().then((users) => {
 		console.log(users);
+		res.send('ok');
 	});
 });
 /* POST create a new user */

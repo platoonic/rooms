@@ -2,11 +2,13 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var passport = require('./passport');
 var db = require('./db');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var roomsRouter = require('./routes/rooms');
+var authRouter  = require('./routes/auth');
 
 var app = express();
 
@@ -26,6 +28,8 @@ db.authenticate().then(() => {
 });
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/rooms', roomsRouter);
+//Make sure to authenticate before you can create a room
+app.use('/rooms', passport.authenticate('jwt', {session: false}), roomsRouter);
+app.use('/auth' , authRouter);
 
 module.exports = app;

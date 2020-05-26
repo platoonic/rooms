@@ -34,6 +34,7 @@ router.get('/', function(req, res, next)
 {
 	models.Room.findAll().then(Rooms => {
 		console.log(Rooms)
+		res.json("rooms retreived");
 	})
 });
 
