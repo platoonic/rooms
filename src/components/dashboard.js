@@ -27,11 +27,11 @@ export default class Dashboard extends React.Component{
 			name: this.state.room_name
 		}).then((res) => {
 			//Should get room code here and set its state
-			alert("Room Joined!");
+			this.props.flashHandler('success', 'Room Joined!');
 			this.props.setInsideRoom(1);
 		}).catch((error) => {
 			console.log(error);
-			alert('An error occured');
+			this.props.flashHandler('error', 'An Error occured');
 		});
 	}
 

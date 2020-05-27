@@ -61,7 +61,7 @@ function App() {
 
 	let render;
 	if(loggedIn){
-		render = <Dashboard setInsideRoom = {setInsideRoom} insideRoom = {insideRoom}/>;
+		render = <Dashboard flashHandler={flashHandler} setInsideRoom = {setInsideRoom} insideRoom = {insideRoom}/>;
 	}else{
 		render = <Homepage showLogin = {showLogin} showSignup = {showSignup}/>;
 	}
