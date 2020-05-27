@@ -20,7 +20,7 @@ router.post('/login', function(req, res, next){
 			res.status(200).json({
 				status:'OK',
 				code:200,
-				data: { message: 'Logged in succesfully', token: token} 
+				data: { message: 'Logged in succesfully', token: token, id: user.id} 
 			});
 		});
 	})(req, res);
