@@ -9,7 +9,7 @@ const login = (username, token) => {
 	localStorage.setItem('userData', JSON.stringify(userData));
 	
 	//Send Token with Each request
-	API.interceptors.request.use((config) => {
+	return API.interceptors.request.use((config) => {
 		config.headers.token = token;
 		return config;
 	}, (error) => {
@@ -17,14 +17,10 @@ const login = (username, token) => {
 	})
 }
 
-const logout = () => {
+const logout = (interceptorID) => {
 	localStorage.removeItem('userData');
 	//Remove token from requests header
-	API.interceptors.request.use((config) => {
-		config.headers.token = '';
-	}, (error) => {
-		return Promise.reject(error);
-	});
+	API.interceptors.request.eject(interceptorID);
 }
 
 export {

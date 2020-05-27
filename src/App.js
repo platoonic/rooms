@@ -3,6 +3,7 @@ import React, {useState, useEffect} from 'react';
 import API from './axios';
 import {loadProgressBar} from 'axios-progress-bar';
 import {logout} from './auth';
+import Flash from './utilities/flash';
 //Components
 import Homepage from './components/homepage';
 import Login from './components/login';
@@ -21,11 +22,15 @@ function App() {
 	const [loggedIn, setLogin] = useState(0);
 	const [username, setUsername] = useState("username");
 	const [insideRoom, setInsideRoom] = useState(0);
+	const [flashVisible, setFlashVisible] = useState(0);
+	const [flashMessages, setFlashMessages] = useState({});
+	const [interceptorID, setInterceptorID] = useState(0);
 
 	//Check if user is already logged in
 	useEffect(() => {
 		//Attach Axios loading bar
 		loadProgressBar({}, API);
+		console.log("Mount");
 		if(localStorage.getItem('userData')){
 			let userData = JSON.parse(localStorage.getItem('userData'));
 			setLogin(1);
@@ -38,11 +43,20 @@ function App() {
 			})
 			setUsername(userData.username);
 		}
-	});
+	}, []);
 
 	let logoutHandler = () => {
-		logout();
+		logout(interceptorID);
+		flashHandler('success', 'Logged out succesfully!');
 		setLogin(0);
+	}
+
+	let flashHandler = (status, messages) => {
+		setFlashVisible(1);
+		setFlashMessages({ status, messages});
+		setTimeout(() => {
+			setFlashVisible(0);
+		}, 2000);
 	}
 
 	let render;
@@ -58,12 +72,15 @@ function App() {
 		button = <a onClick={() => {logoutHandler()}} className="button red" href="#">Logout</a>;
 	}
 	return (
-		<>
+		<>	
+			{flashVisible == 1 &&
+				<Flash data={flashMessages}/>
+			}
 			{loginVisible == 1 &&
-				<Login showLogin = {showLogin} setUsername = {setUsername} setLogin = {setLogin}/>
+				<Login setInterceptorID={setInterceptorID} flashHandler={flashHandler} showLogin = {showLogin} setUsername = {setUsername} setLogin = {setLogin}/>
 			}
 			{signupVisible == 1 &&
-				<SignUp showSignup = {showSignup} showLogin = {showLogin}/>
+				<SignUp flashHandler={flashHandler} showSignup = {showSignup} showLogin = {showLogin}/>
 			}
 		    <div className="container-md homepage">
 				<div className="row">

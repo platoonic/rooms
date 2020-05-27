@@ -22,32 +22,33 @@ class Login extends React.Component{
 	}
 	handleSubmit = (event) => {
 		let submitActive = false;
-		let errors = "";
+		let errors = [];
 		if(this.state.username == ''){
-			errors += "Please Enter your Username \n";
+			errors.push("Please Enter your Username \n");
 		}
 		if(this.state.password == ''){
-			errors += "Please Enter your Password";
+			errors.push("Please Enter your Password");
 		}
-		if(errors == ""){
+		if(errors.length == 0){
 			//Send API Request to /users/login
 			API.post('/auth/login', {
 				username: this.state.username,
 				password: this.state.password
 			}).then((res) => {
 				console.log(res);
-				alert("Logged In Successfully!");
-				login(this.state.username, res.data.data.token);
+				this.props.flashHandler('success', 'Logged In!');
+				let interceptorID = login(this.state.username, res.data.data.token);
+				this.props.setInterceptorID(interceptorID);
 				this.props.showLogin(0);
 				this.props.setUsername(this.state.username);
 				this.props.setLogin(1);
 			}).catch((error) => {
-				alert("Wrong Crednentials!");
+				this.props.flashHandler('error', 'Wrong Credentials');
 				console.log(error);
 				this.setState({ submitActive: true });
 			});
 		}else{
-			alert(errors);
+			this.props.flashHandler('error', errors);
 			submitActive = true;
 		}
 		this.setState({ submitActive });

@@ -22,43 +22,41 @@ export default class SignUp extends React.Component{
 	}
 	handleSubmit = (event) => {
 		let submitActive = false;
-		let errors = "";
+		let errors = [];
 		if(this.state.username == ''){
-			errors += "Please Enter your Username \n";
+			errors.push("Please Enter your Username \n");
 		}
 		if(this.state.password == ''){
-			errors += "Please Enter your Password \n";
+			errors.push("Please Enter your Password \n");
 		}
 		if(this.state.email == ""){
-			errors += "Please Enter your email\n";
+			errors.push("Please Enter your email\n");
 		}else if(!this.state.email.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)){
-			errors += "The Email you entered is invalid\n";
+			errors.push("The Email you entered is invalid\n");
 		}
 		if(this.state.password_confirm == ""){
-			errors += "Please enter your password confirmation\n";
+			errors.push("Please enter your password confirmation\n");
 		}else if(this.state.password != this.state.password_confirm){
-			errors += "The Passwords you entered do not match\n";
+			errors.push("The Passwords you entered do not match\n");
 		}
 		
-		if(errors == ""){
+		if(errors.length == 0){
 			//Send HTTP POST request to register the user at the backend API
 			API.post('/users', {
 				username: this.state.username,
 				email: this.state.email,
 				password: this.state.password
 			}).then((res) => {
-				console.log(res);
-				alert("You have signed up!");
+				this.props.flashHandler('success', 'Signed Up Succesfully!');
 				this.props.showSignup(0);
 				this.props.showLogin(1);
 
 			}).catch((error) => {
-				console.log(error);
-				alert("An error occured!");
+				this.props.flashHandler('error', 'An Error Occured!');
 			});
 			
 		}else{
-			alert(errors);
+			this.props.flashHandler('error', errors);
 			submitActive = true;
 		}
 		this.setState({ submitActive });

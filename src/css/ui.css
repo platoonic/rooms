@@ -65,3 +65,31 @@ input[type=text], input[type=password]{
 input[type=text]::placeholder, input[type=password]::placeholder{
 	color:#b8b8b8;
 }
+
+.flash{
+	z-index:99999;
+	padding:20px;
+	position:absolute;
+	left:0;
+	right:0;
+	max-width: 400px;
+	text-align: center;
+	margin-right:auto;
+	margin-left:auto;
+	top:40px;
+	opacity:1;
+}
+
+.flash.error{
+	background-color:#a34a43;
+}
+
+.flash.success{
+	background-color:#73a343;
+}
+
+
+
+
+
+
