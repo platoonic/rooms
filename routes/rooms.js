@@ -26,23 +26,24 @@ router.delete('delete/:roomId', function(req, res)
 	 }
 	}).then(() => {
 	  res.status(200).json({ status:'OK', code:200, data: { message: 'Room was Deleted!' } });
-}).catch((error) => {
-	res.status(400).json({status:'Bad Request', code: 400, data: {message: 'Error Deleting Room' }})
-});
+	}).catch((error) => {
+		res.status(400).json({status:'Bad Request', code: 400, data: {message: 'Error Deleting Room' }})
+	});
 })
 
 
-router.post('/join/:room_Code', function(req, res) {
+router.get('/join/:room_Code', function(req, res) {
 	let recievedCode = req.params.room_Code;
 	models.Room.findOne({ where:{ room_Code: recievedCode }})
 	.then(theRoom => {
 		let number = theRoom.dataValues.people_Count;
+		let room_name = theRoom.dataValues.name;
 		console.log(number);
 		if(number == 1){
 			models.Room.update( {
 				people_Count : 2},{ where: {id : theRoom.dataValues.id}
 			})
-			.success(res.status(200).json({ status:'OK', code:200, data: { message: 'Room joined successfully' }}))
+			.success(res.status(200).json({ status:'OK', code:200, data: { message: 'Room joined successfully', room_name: room_name }}))
 			.error(error => {
 				res.status(400).json({status:'Bad Request', code: 400, data: {message: 'Room found but failed to update!' }});
 			})
@@ -77,7 +78,7 @@ router.get('/', function(req, res, next) {
 	})
 	.catch((error) => {
 	res.status(400).json({status:'Bad Request', code: 400, data: {message: 'Rooms Error' }})
-});
+	});
 });
 
 module.exports = router;
