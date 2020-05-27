@@ -4,6 +4,10 @@ export default class Room extends React.Component{
 	constructor(props){
 		super(props);
 	}
+	inviteHandler = () => {
+		navigator.clipboard.writeText(this.props.room_code);
+		this.props.flashHandler('success', 'Copied Room Code to Clipboard!');
+	}
 	render(){
 		return(
 			<div className="col-12">
@@ -14,15 +18,11 @@ export default class Room extends React.Component{
 					<>
 						<a href="#">Share Screen</a>
 						<a href="#">Upload Video</a>
-						<a href="#">Invite Users</a>
+						<a onClick={() => { this.inviteHandler() }} href="#">Invite Users</a>
 					</>
 					}
 					<div className="participants">
-						<span>Participants</span>
-							<ul>
-								<li>@{this.props.room_name}(me)</li>
-								<li>@username2</li>
-							</ul>
+						<span>People: 1 (me)</span>
 					</div>
 				</div>
 			</div>

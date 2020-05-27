@@ -37,7 +37,7 @@ class Login extends React.Component{
 			}).then((res) => {
 				console.log(res);
 				this.props.flashHandler('success', 'Logged In!');
-				let interceptorID = login(this.state.username, res.data.data.token);
+				let interceptorID = login(this.state.username, res.data.data.token, res.data.data.id);
 				this.props.setInterceptorID(interceptorID);
 				this.props.showLogin(0);
 				this.props.setUsername(this.state.username);

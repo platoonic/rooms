@@ -30,7 +30,6 @@ function App() {
 	useEffect(() => {
 		//Attach Axios loading bar
 		loadProgressBar({}, API);
-		console.log("Mount");
 		if(localStorage.getItem('userData')){
 			let userData = JSON.parse(localStorage.getItem('userData'));
 			setLogin(1);
