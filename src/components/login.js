@@ -1,4 +1,7 @@
 import React from 'react';
+//Utilities
+import API from '../axios';
+import {login} from '../auth'
 
 class Login extends React.Component{
 	constructor(props){
@@ -19,23 +22,33 @@ class Login extends React.Component{
 	}
 	handleSubmit = (event) => {
 		let submitActive = false;
-		let errors = "";
+		let errors = [];
 		if(this.state.username == ''){
-			errors += "Please Enter your Username \n";
+			errors.push("Please Enter your Username \n");
 		}
 		if(this.state.password == ''){
-			errors += "Please Enter your Password";
+			errors.push("Please Enter your Password");
 		}
-		if(errors == ""){
+		if(errors.length == 0){
 			//Send API Request to /users/login
-			//Timeout to simulate a real request delay
-			setTimeout(() => {
+			API.post('/auth/login', {
+				username: this.state.username,
+				password: this.state.password
+			}).then((res) => {
+				console.log(res);
+				this.props.flashHandler('success', 'Logged In!');
+				let interceptorID = login(this.state.username, res.data.data.token, res.data.data.id);
+				this.props.setInterceptorID(interceptorID);
+				this.props.showLogin(0);
 				this.props.setUsername(this.state.username);
 				this.props.setLogin(1);
-				this.props.showLogin(0);
-			}, 2000);
+			}).catch((error) => {
+				this.props.flashHandler('error', 'Wrong Credentials');
+				console.log(error);
+				this.setState({ submitActive: true });
+			});
 		}else{
-			alert(errors);
+			this.props.flashHandler('error', errors);
 			submitActive = true;
 		}
 		this.setState({ submitActive });

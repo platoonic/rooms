@@ -4,25 +4,25 @@ export default class Room extends React.Component{
 	constructor(props){
 		super(props);
 	}
+	inviteHandler = () => {
+		navigator.clipboard.writeText(this.props.room_code);
+		this.props.flashHandler('success', 'Copied Room Code to Clipboard!');
+	}
 	render(){
 		return(
-			<div class="col-12">
+			<div className="col-12">
 				<video width="933" height="360" controls></video>
-				<div class="video_controls">
-					<span class="room_name">{this.props.room_name}</span>
+				<div className="video_controls">
+					<span className="room_name">{this.props.room_name}</span>
 					{this.props.type == 'host' &&
 					<>
 						<a href="#">Share Screen</a>
 						<a href="#">Upload Video</a>
-						<a href="#">Invite Users</a>
+						<a onClick={() => { this.inviteHandler() }} href="#">Invite Users</a>
 					</>
 					}
-					<div class="participants">
-						<span>Participants</span>
-							<ul>
-								<li>@{this.props.room_name}(me)</li>
-								<li>@username2</li>
-							</ul>
+					<div className="participants">
+						<span>People: 1 (me)</span>
 					</div>
 				</div>
 			</div>
