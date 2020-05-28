@@ -20,6 +20,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 //This is for testing DB connection, It should be established if you 
 //have MySQL running on your pc
 db.authenticate().then(() => {
