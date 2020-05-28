@@ -19,7 +19,7 @@ export default class Room extends React.Component{
 		}
 		//Connect to Socket
 		this.setState({
-			socket: io('localhost:3000/')
+			socket: io('https://room-backend-networks.herokuapp.com/')
 		}, () => {
 			const data = {
 				room_code: this.props.room_code
