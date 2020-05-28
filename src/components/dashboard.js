@@ -66,7 +66,7 @@ export default class Dashboard extends React.Component{
 	render(){
 		let page;
 		if(this.props.insideRoom){
-			page = <Room flashHandler={this.props.flashHandler} type={this.state.type} room_name={this.state.room_name} room_code={this.state.room_code}/>;
+			page = <Room setInsideRoom={this.props.setInsideRoom} flashHandler={this.props.flashHandler} type={this.state.type} room_name={this.state.room_name} room_code={this.state.room_code}/>;
 		}else{
 			page = <>
 					<div className="col-6">

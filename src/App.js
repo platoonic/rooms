@@ -65,9 +65,7 @@ function App() {
 		render = <Homepage showLogin = {showLogin} showSignup = {showSignup}/>;
 	}
 	let button;
-	if(insideRoom){
-		button = <a onClick={() => {setInsideRoom(0)}} className="button red" href="#">Leave Room</a>
-	}else{
+	if(!insideRoom){
 		button = <a onClick={() => {logoutHandler()}} className="button red" href="#">Logout</a>;
 	}
 	return (
