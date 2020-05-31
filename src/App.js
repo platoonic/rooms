@@ -86,7 +86,7 @@ function App() {
 					</div>
 					{loggedIn == 1 &&
 						<div className="col-4 user_menu">
-							<span>@{username}</span>
+							<span className={insideRoom == true ? "paddingToRight" : "normal"}>@{username}</span>
 							{button}
 						</div>
 					}

@@ -172,10 +172,44 @@ h1,h2,h3,h4,h5,h6{
 	font-size:15px;
 }
 
+.upload_box{
+	background-color: #2d2d2d;
+	padding:20px;
+	position:absolute;
+	z-index: 999;
+	width:280px;
+	margin:0 auto;
+	left:0;
+	right:0;
+	top:320px;
+}
 
+.no-video{
+	background-color:#2d2d2d;
+	position:absolute;
+	z-index:999;
+	width:100%;
+	height:360px;
+	padding-top:130px;
+	font-size:20px;
+	text-align: center
+}
 
+a.disabled{
+	color:#2d2d2d;
+}
 
+a.disabled:hover{
+	border:0;
+}
 
+.paddingToRight{
+	padding-left:180px;
+}
+
+.user_menu .normal{
+	padding-left:30px;
+}
 
 
 
