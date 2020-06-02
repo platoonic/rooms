@@ -37,4 +37,29 @@ module.exports = (socket) => {
       socket.to(data.room_code).emit('user-left');
     });
   });
+  //signal streaming client
+  socket.on("stream", (data) => {
+    socket.to(data.room_code).emit("stream", data);
+	  console.log("streaming from " + socket.id+ "to room: "+ data.room_code);
+  });
+  //signal viewing client
+  socket.on("view", (data) => {
+    socket.to(data.room_code).emit("viewing", socket.id);
+	  console.log(socket.id + " is viewing room " + data.room_code);
+  });
+  //directing SDP offer
+  socket.on("offer", (id, message) => {
+    socket.to(id).emit("offer", socket.id, message);
+  });
+  //directing SDP answer
+  socket.on("answer", (id, message) => {
+    socket.to(id).emit("answer", socket.id, message);
+  });
+  //sending ICE candidate message
+  socket.on("candidate", (id, message) => {
+    socket.to(id).emit("candidate", socket.id, message);
+  });
+  socket.on("disconnect", () => {
+    socket.emit("disconnectPeer", socket.id);
+  });
 }
