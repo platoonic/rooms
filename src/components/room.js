@@ -31,7 +31,7 @@ export default class Room extends React.Component{
 		}
 		//Connect to Socket
 		this.setState({
-			socket: io('http://localhost:3005')
+			socket: io('https://room-backend-networks.herokuapp.com/')
 		}, () => {
 			let peerConnections = [];
 			const data = {
@@ -102,6 +102,8 @@ export default class Room extends React.Component{
 				        .then((sdp) => peerConnection.setLocalDescription(sdp))
 				        .then(() => {
 				            this.state.socket.emit("answer", id, peerConnection.localDescription);
+				        }).then(() => {
+				        	console.log(peerConnection.getStats());
 				        });
 				    peerConnection.ontrack = (event) => {
 				    	this.setState({viewing: true});
