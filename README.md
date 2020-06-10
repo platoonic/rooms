@@ -12,9 +12,9 @@ Live Demo: https://rooms-networks.herokuapp.com/
 - master_frontend: ReactJS application that consumes the backend API.
 
 # Installing and running
-Node.JS v13.11.0 or higher
+- Node.JS v13.11.0 or higher
 https://nodejs.org/en/download/
-MySQL
+- MySQL
 https://dev.mysql.com/doc/refman/8.0/en/linux-installation.html
 
 Manually: 
