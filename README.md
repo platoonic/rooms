@@ -1,5 +1,12 @@
-# rooms Backend
+# rooms
 Virtual rooms web app to share screen/videos between users based on Node.JS &amp; React
+
+Live Demo: https://rooms-networks.herokuapp.com/
+
+# Branches
+- master_backend: NodeJS API server based on Express & Socket.IO server for WebRTC signaling.
+- master_frontend: ReactJS application that consumes the backend API.
+
 # Installing and running
 Node.JS v13.11.0 or higher
 https://nodejs.org/en/download/
