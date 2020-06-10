@@ -1,4 +1,6 @@
 # rooms
+![Heroku](http://heroku-badge.herokuapp.com/?app=rooms-networks&root=/)
+
 Web Application that lets users stream media between each other (currently supports sharing local video files and screen sharing)
 
 Tech stack: NodeJS, ReactJS, Express, SocketIO, MySQL and WebRTC.
