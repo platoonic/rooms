@@ -1,5 +1,7 @@
 # rooms
-Virtual rooms web app to share screen/videos between users based on Node.JS &amp; React
+Web Application that lets users stream media between each other (currently supports sharing local video files and screen sharing)
+
+Tech stack: NodeJS, ReactJS, Express, SocketIO, MySQL and WebRTC.
 
 Live Demo: https://rooms-networks.herokuapp.com/
 
